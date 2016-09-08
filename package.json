@@ -1,0 +1,22 @@
+{
+  "name": "project1",
+  "version": "1.0.0",
+  "description": "##[Trello Link!](https://trello.com/b/xqoziE71/lets-get-together)",
+  "main": "seed.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrogach2350/project1.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mrogach2350/project1/issues"
+  },
+  "homepage": "https://github.com/mrogach2350/project1#readme"
+}
