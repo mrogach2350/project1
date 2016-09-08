@@ -34,7 +34,7 @@ var db = require('./models');
  */
 
  app.get('/', function homepage(req, res) {
-   console.log(__dirname + '/views/index.html');
+  //  console.log(__dirname + '/views/index.html');
    res.sendFile(__dirname + '/views/index.html');
  });
 
