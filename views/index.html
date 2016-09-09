@@ -26,6 +26,43 @@
     </div>
       <hr>
     <div class="row" id="eventTarget">
+    </div>
+
+      <!-- Modal Structure -->
+      <div id="eventModal" class="modal">
+        <div class="modal-content">
+          <h4>Add New Event</h4>
+        </div>
+          <form class="submit-event" action="/api/events" method="post">
+            <div class="row">
+              <div class="form-group input-field col s12">
+                <input id="name" type="text" >
+                <label for="name">Event Name</label>
+              </div>
+              <div class="form-group input-field col s6">
+                <input id="host" type="text" >
+                <label for="host">Host</label>
+              </div>
+              <div class="form-group input-field col s6">
+                <input id="where" type="text" >
+                <label for="where">Where</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group input-field col s6">
+                <input id="when" type="text" >
+                <label for="when">When</label>
+              </div>
+              <div class="form-group input-field col s6">
+                <input id="what" type="text" >
+                <label for="what">Description</label>
+              </div>
+            </div>
+            <button class="btn waves-effect waves-light modal-close" type="submit" name="action">Submit</button>
+          </form>
+      </div>
+
+
       <script id="event-template" type="text/x-handlebars-template">
         {{#each events}}
         <div class="col s6 m3">
@@ -33,7 +70,7 @@
             <div class="card-content white-text">
               <span class="card-title">{{name}}</span>
               <ul>
-                <li>Host:</li>
+                <li>Host: {{host}}</li>
                 <li>Where: {{where}}</li>
                 <li>When: {{when}}</li>
                 <li>Description: {{what}}</li>
@@ -68,43 +105,5 @@
         </div>
       {{/each}}
       </script>
-    </div>
-
-      <!-- Modal Structure -->
-      <div id="eventModal" class="modal">
-        <div class="modal-content">
-          <h4>Add New Event</h4>
-        </div>
-          <form class="submit-event" action="index.html" method="post">
-            <div class="row">
-              <div class="form-group input-field col s12">
-                <input id="name" type="text" >
-                <label for="name">Event Name</label>
-              </div>
-              <div class="form-group input-field col s6">
-                <input id="host" type="text" >
-                <label for="host">Host</label>
-              </div>
-              <div class="form-group input-field col s6">
-                <input id="where" type="text" >
-                <label for="where">Where</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="form-group input-field col s6">
-                <input id="when" type="text" >
-                <label for="when">When</label>
-              </div>
-              <div class="form-group input-field col s6">
-                <input id="what" type="text" >
-                <label for="what">Description</label>
-              </div>
-            </div>
-            <button class="btn waves-effect waves-light" type="submit" name="action">Submit</button>
-          </form>
-      </div>
-
-
-
   </body>
 </html>
