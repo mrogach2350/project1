@@ -9,11 +9,6 @@ $(document).ready(function() {
     success: renderEvents
   });
 
-$('.add-event').on('click', function(event) {
-  event.preventDefault();
-  $('#eventModal').openModal();
-});
-
   function renderEvents(json){
     allEvents = json;
     renderEvent();
@@ -25,6 +20,40 @@ $('.add-event').on('click', function(event) {
     var html = eventsTemplate({events:allEvents});
     $('#eventTarget').prepend(html);
   }
+
+$('.add-event').on('click', function(event) {
+  event.preventDefault();
+  $('#eventModal').openModal();
+});
+
+$('.submit-event').on('submit', function(e){
+  var eventInfo = {
+    name: $('#name').val(),
+    host: $('#host').val(),
+    where: $('#where').val(),
+    when: $('#when').val(),
+    what: $('#what').val()
+  }
+  console.log(eventInfo);
+  e.preventDefault();
+  $.ajax({
+    method: 'POST',
+    url: '/api/events',
+    data: eventInfo,
+    success: newEventSuccess,
+    error: newEventError
+  });
+});
+
+  function newEventSuccess(json){
+    $('.submit-event input').val('');
+    allEvents.push(json);
+    renderEvents();
+  }
+  function newEventError(){
+
+  }
+
 
 
 })
