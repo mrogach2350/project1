@@ -9,6 +9,11 @@ $(document).ready(function() {
     success: renderEvents
   });
 
+$('.add-event').on('click', function(event) {
+  event.preventDefault();
+  $('#eventModal').openModal();
+});
+
   function renderEvents(json){
     allEvents = json;
     renderEvent();
@@ -20,5 +25,6 @@ $(document).ready(function() {
     var html = eventsTemplate({events:allEvents});
     $('#eventTarget').prepend(html);
   }
+
 
 })
