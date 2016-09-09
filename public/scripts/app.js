@@ -27,6 +27,7 @@ $('.add-event').on('click', function(event) {
 });
 
 $('.submit-event').on('submit', function(e){
+  e.preventDefault();
   var eventInfo = {
     name: $('#name').val(),
     host: $('#host').val(),
@@ -34,8 +35,6 @@ $('.submit-event').on('submit', function(e){
     when: $('#when').val(),
     what: $('#what').val()
   }
-  console.log(eventInfo);
-  e.preventDefault();
   $.ajax({
     method: 'POST',
     url: '/api/events',
