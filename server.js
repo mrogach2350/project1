@@ -53,6 +53,17 @@ app.get('/api/events', function api_event(req, res){
     });
 });
 
+app.post('/api/events', function (req, res){
+  var newEvent = new db.Event({
+    name: req.body.name,
+    host: req.body.host,
+    where: req.body.where,
+    when: req.body.when,
+    what: req.body.what
+  });
+  console.log(newEvent);
+});
+
 
 /**********
  * SERVER *
