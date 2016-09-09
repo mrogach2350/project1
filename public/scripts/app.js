@@ -10,6 +10,11 @@ $(document).ready(function() {
     success: renderEvents
   });
 
+  $('.add-event').on('click', function(event) {
+    event.preventDefault();
+    $('#modal1').openModal();
+  })
+
   function renderEvents(json){
     allEvents = json;
     renderEvent();

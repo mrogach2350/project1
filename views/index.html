@@ -5,7 +5,7 @@
     <title></title>
 
     <!-- STYLESHEETS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
     <link rel="stylesheet" href="/styles/styles.css">
 
@@ -21,7 +21,21 @@
   <body>
     <div class="row">
       <h1 class="col m8 offset m2">The Title Goes Here!</h1>
+
       <button class="add-event col m2" type="button" name="button">Add Event!</button>
+      <!-- <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a> -->
+
+      <!-- Modal Structure -->
+      <div id="modal1" class="modal">
+        <div class="modal-content">
+          <h4>Modal Header</h4>
+          <p>A bunch of text</p>
+        </div>
+        <div class="modal-footer">
+          <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+        </div>
+      </div>
+
     </div>
       <hr>
     <div class="row" id="eventTarget">
