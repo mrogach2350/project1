@@ -61,7 +61,13 @@ app.post('/api/events', function (req, res){
     when: req.body.when,
     what: req.body.what
   });
-  console.log(newEvent);
+  newEvent.save(function(err, e){
+    if (err){
+      return console.log('create error ' + err);
+    }
+    console.log('created ', e.name);
+    res.json(e);
+  });
 });
 
 
