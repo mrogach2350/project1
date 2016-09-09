@@ -47,7 +47,8 @@ $('.submit-event').on('submit', function(e){
   function newEventSuccess(json){
     $('.submit-event input').val('');
     allEvents.push(json);
-    renderEvents();
+    $('#eventTarget').empty();
+    renderEvent();
   }
   function newEventError(){
 
