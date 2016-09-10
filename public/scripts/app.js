@@ -26,6 +26,14 @@ $('.add-event').on('click', function(event) {
   $('#eventModal').openModal();
 });
 
+$('#eventTarget').on('click', '.edit-event', function(event){
+  event.preventDefault();
+  $('#editModal').openModal();
+});
+
+
+
+
 $('#eventTarget').on('click','.delete-event', function(event){
   event.preventDefault();
   $.ajax({
