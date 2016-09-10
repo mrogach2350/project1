@@ -70,6 +70,13 @@ app.post('/api/events', function (req, res){
   });
 });
 
+app.delete('/api/events/:id', function(req, res){
+  var eventId = req.params.id;
+
+  db.Event.findOneAndRemove({_id: eventId}, function(err, deletedEvent){
+    res.json(deletedEvent);
+  });
+});
 
 /**********
  * SERVER *
