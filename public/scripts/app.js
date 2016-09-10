@@ -26,6 +26,16 @@ $('.add-event').on('click', function(event) {
   $('#eventModal').openModal();
 });
 
+$('#eventTarget').on('click','.delete-event', fuction (event){
+  event.preventDefault();
+  $.ajax({
+    method: 'DELETE',
+    url: '/api/events/' + $(this).attr('data-id'),
+    success: deleteEventSuccess,
+    error: deleteEventError
+  });
+});
+
 $('.submit-event').on('submit', function(e){
   e.preventDefault();
   var eventInfo = {
@@ -54,6 +64,23 @@ $('.submit-event').on('submit', function(e){
 
   }
 
+  function deleteEventSuccess(){
+    var e = json;
+    var eId = e._id;
 
+    for (var i = 0; i < allEvents.length; index ++){
+      console.log(allEvents);
+      if(allEvents[i]._id === eId) {
+        console.log(allEvents[i]);
+        allEvents.splice(i, 1);
+        console.log(allEvents);
+        break;
+      }
+    }
+    renderEvent();
+  }
 
+  function deleteEventError(json){
+
+  }
 })
