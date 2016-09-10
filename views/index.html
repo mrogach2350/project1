@@ -65,35 +65,12 @@
       <div id="editModal" class="modal">
         <div class="modal-content">
           <h4>Edit Event</h4>
+            <div class="modal-body" id="editEventModalBody">
+                <p> REPLACE #editEventModalBody</p>
+            </div>
         </div>
-          <form class="edit-event" action="/api/events" method="put">
-            <div class="row">
-              <div class="form-group input-field col s12">
-                <input id="name" type="text" class="validate" >
-                <label for="name">Event Name</label>
-              </div>
-              <div class="form-group input-field col s6">
-                <input id="host" type="text" class="validate" >
-                <label for="host">Host</label>
-              </div>
-              <div class="form-group input-field col s6">
-                <input id="where" type="text" class="validate" >
-                <label for="where">Where</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="form-group input-field col s6">
-                <input id="when" type="text" class="validate" >
-                <label for="when">When</label>
-              </div>
-              <div class="form-group input-field col s6">
-                <input id="what" type="text" class="validate" >
-                <label for="what">Description</label>
-              </div>
-            </div>
-            <button class="btn waves-effect waves-light modal-close" type="submit" name="action">Submit</button>
-          </form>
-      </div>
+      <button type="button" id="editEventModalSubmit" name="button">Submit Changes</button>
+    </div>
 
 
       <script id="event-template" type="text/x-handlebars-template">
@@ -138,6 +115,34 @@
           </div>
         </div>
       {{/each}}
+      </script>
+
+      <script id ='event-edit-template' type='text/x-handlebars-template'>
+        <form class="edit-event" id="{{_id}}" action="/api/events" method="put">
+          <div class="row">
+            <div class="form-group input-field col s12">
+              <input id="name" type="text" class="validate" value = "{{ name }}">
+              <label for="name">Event Name</label>
+            </div>
+            <div class="form-group input-field col s6">
+              <input id="host" type="text" class="validate" value="{{ host }}" >
+              <label for="host">Host</label>
+            </div>
+            <div class="form-group input-field col s6">
+              <input id="where" type="text" class="validate" value="{{ where }}">
+              <label for="where">Where</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group input-field col s6">
+              <input id="when" type="text" class="validate" value = "{{ when }}">
+              <label for="when">When</label>
+            </div>
+            <div class="form-group input-field col s6">
+              <input id="what" type="text" class="validate" value = "{{ what }}" >
+              <label for="what">Description</label>
+            </div>
+          </div>
       </script>
   </body>
 </html>
