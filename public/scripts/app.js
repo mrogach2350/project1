@@ -29,10 +29,37 @@ $('.add-event').on('click', function(event) {
 $('#eventTarget').on('click', '.edit-event', function(event){
   event.preventDefault();
   $('#editModal').openModal();
+  handleEditEventClick();
 });
 
 
-
+function handleEditEventClick(e){
+  var eventId = $('.edit-event').attr('data-id');
+  console.log('edit event clicked for ', eventId);
+  $.ajax({
+    method: 'GET',
+    url: '/api/events/' + eventId,
+    success: editEventSuccess
+  });
+}
+// $('.edit-event').on('submit', function(e){
+//   e.preventDefault();
+//   var eventInfo = {
+//
+//     name: $('#name').val(),
+//     host: $('#host').val(),
+//     where: $('#where').val(),
+//     when: $('#when').val(),
+//     what: $('#what').val()
+//   }
+//   $.ajax({
+//     method: 'PUT',
+//     url: '/api/events' +
+//     data: eventInfo,
+//     success: editEventSuccess,
+//     error: editEventError
+//   });
+// });
 
 $('#eventTarget').on('click','.delete-event', function(event){
   event.preventDefault();
@@ -71,7 +98,10 @@ $('.submit-event').on('submit', function(e){
   function newEventError(){
 
   }
-
+  function editEventSuccess(json) {
+    console.log('found '+ json);
+  }
+  
   function deleteEventSuccess(json){
     var e = json;
     var eId = e._id;
