@@ -26,7 +26,7 @@ $('.add-event').on('click', function(event) {
   $('#eventModal').openModal();
 });
 
-$('#eventTarget').on('click','.delete-event', fuction (event){
+$('#eventTarget').on('click','.delete-event', function(event){
   event.preventDefault();
   $.ajax({
     method: 'DELETE',
@@ -64,11 +64,10 @@ $('.submit-event').on('submit', function(e){
 
   }
 
-  function deleteEventSuccess(){
+  function deleteEventSuccess(json){
     var e = json;
     var eId = e._id;
-
-    for (var i = 0; i < allEvents.length; index ++){
+    for (var i = 0; i < allEvents.length; i ++){
       console.log(allEvents);
       if(allEvents[i]._id === eId) {
         console.log(allEvents[i]);
@@ -77,6 +76,7 @@ $('.submit-event').on('submit', function(e){
         break;
       }
     }
+    $('#eventTarget').empty();
     renderEvent();
   }
 
