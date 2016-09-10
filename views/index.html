@@ -36,25 +36,25 @@
           <form class="submit-event" action="/api/events" method="post">
             <div class="row">
               <div class="form-group input-field col s12">
-                <input id="name" type="text" >
+                <input id="name" type="text" class="validate" >
                 <label for="name">Event Name</label>
               </div>
               <div class="form-group input-field col s6">
-                <input id="host" type="text" >
+                <input id="host" type="text" class="validate" >
                 <label for="host">Host</label>
               </div>
               <div class="form-group input-field col s6">
-                <input id="where" type="text" >
+                <input id="where" type="text" class="validate" >
                 <label for="where">Where</label>
               </div>
             </div>
             <div class="row">
               <div class="form-group input-field col s6">
-                <input id="when" type="text" >
+                <input id="when" type="text" class="validate" >
                 <label for="when">When</label>
               </div>
               <div class="form-group input-field col s6">
-                <input id="what" type="text" >
+                <input id="what" type="text" class="validate" >
                 <label for="what">Description</label>
               </div>
             </div>
@@ -78,7 +78,7 @@
             </div>
             <div class="card-action">
               <button class="edit-event" type="button" name="button">Edit Event</button>
-              <button class="delete-event" type="button" name="button">Delete</button>
+              <button class="delete-event" type="button" name="button" data-id={{_id}}>Delete</button>
               <!-- Dropdown Trigger -->
               <a class='dropdown-button btn' href='#' data-activates='dropdown1'>Drop Me!</a>
 
