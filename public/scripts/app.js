@@ -10,11 +10,6 @@ $(document).ready(function() {
     success: renderEvents
   });
 
-  $('.add-event').on('click', function(event) {
-    event.preventDefault();
-    $('#modal1').openModal();
-  })
-
   function renderEvents(json){
     allEvents = json;
     renderEvent();
@@ -117,7 +112,7 @@ $('.submit-event').on('submit', function(e){
   function editEventSuccess(json) {
     console.log('found '+ json);
   }
-  
+
   function deleteEventSuccess(json){
     var e = json;
     var eId = e._id;
