@@ -43,34 +43,25 @@ $('#eventTarget').on('click', '.edit-event', function(event){
   handleEditEventClick();
 });
 
+// identifies which event card was clicked and saves that _id to insert the open fields into the modal.
+  function handleEditEventClick(e){
+    var eventId = $('.edit-event').attr('data-id');
+    console.log('edit event clicked for ', eventId);
+    $.get('/api/events/' + eventId, function(eventDetails){
+      console.log('got back event details ', eventDetails);
+      populateEditEventModal(eventDetails, eventId);
+      $('#editModal').openModal();
+    });
+  }
 
-function handleEditEventClick(e){
-  var eventId = $('.edit-event').attr('data-id');
-  console.log('edit event clicked for ', eventId);
-  $.ajax({
-    method: 'GET',
-    url: '/api/events/' + eventId,
-    success: editEventSuccess
-  });
-}
-// $('.edit-event').on('submit', function(e){
-//   e.preventDefault();
-//   var eventInfo = {
-//
-//     name: $('#name').val(),
-//     host: $('#host').val(),
-//     where: $('#where').val(),
-//     when: $('#when').val(),
-//     what: $('#what').val()
-//   }
-//   $.ajax({
-//     method: 'PUT',
-//     url: '/api/events' +
-//     data: eventInfo,
-//     success: editEventSuccess,
-//     error: editEventError
-//   });
-// });
+//inserts event details into the form template used inside the edit-event modal.
+  function populateEditEventModal(eventDetails, eventId){
+    var eventsTemplate = $('#event-edit-template').html();
+    var template = Handlebars.compile(eventsTemplate);
+    eventForms = template({events: eventDetails, _id: eventId});
+    console.log(eventForms);
+    $('#editEventModalBody').html(eventForms);
+  }
 
 $('#eventTarget').on('click','.delete-event', function(event){
   event.preventDefault();
