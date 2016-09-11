@@ -118,28 +118,28 @@
       </script>
 
       <script id ='event-edit-template' type='text/x-handlebars-template'>
-        <form class="edit-event" id="{{_id}}" action="/api/events" method="put">
+        <form class="edit-event" eventId="{{_id}}" action="/api/events" method="put">
           <div class="row">
             <div class="form-group input-field col s12">
-              <input id="name" type="text" class="validate" value = "{{ name }}">
+              <input id="name" type="text" class="validate" value = "{{name}}">
               <label for="name">Event Name</label>
             </div>
             <div class="form-group input-field col s6">
-              <input id="host" type="text" class="validate" value="{{ host }}" >
+              <input id="host" type="text" class="validate" value="{{host}}">
               <label for="host">Host</label>
             </div>
             <div class="form-group input-field col s6">
-              <input id="where" type="text" class="validate" value="{{ where }}">
+              <input id="where" type="text" class="validate" value="{{where}}">
               <label for="where">Where</label>
             </div>
           </div>
           <div class="row">
             <div class="form-group input-field col s6">
-              <input id="when" type="text" class="validate" value = "{{ when }}">
+              <input id="when" type="text" class="validate" value = "{{when}}">
               <label for="when">When</label>
             </div>
             <div class="form-group input-field col s6">
-              <input id="what" type="text" class="validate" value = "{{ what }}" >
+              <input id="what" type="text" class="validate" value = "{{what}}">
               <label for="what">Description</label>
             </div>
           </div>
