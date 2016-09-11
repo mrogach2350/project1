@@ -53,6 +53,40 @@ app.get('/api/events', function api_event(req, res){
     });
 });
 
+app.post('/api/events', function (req, res){
+  var newEvent = new db.Event({
+    name: req.body.name,
+    host: req.body.host,
+    where: req.body.where,
+    when: req.body.when,
+    what: req.body.what
+  });
+  newEvent.save(function(err, e){
+    if (err){
+      return console.log('create error ' + err);
+    }
+    console.log('created ', e.name);
+    res.json(e);
+  });
+});
+
+app.get('/api/events/:id', function(req, res){
+  db.Event.findById(req.params.id, function(err, foundEvent){
+    if(err) {
+      console.log('error', err);
+    }
+    console.log('responding with ', foundEvent);
+    res.json(foundEvent);
+  });
+});
+
+app.delete('/api/events/:id', function(req, res){
+  var eventId = req.params.id;
+
+  db.Event.findOneAndRemove({_id: eventId}, function(err, deletedEvent){
+    res.json(deletedEvent);
+  });
+});
 
 /**********
  * SERVER *

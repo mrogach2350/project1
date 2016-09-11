@@ -5,7 +5,6 @@
     <title></title>
 
     <!-- STYLESHEETS -->
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
     <link rel="stylesheet" href="/styles/styles.css">
 
@@ -19,26 +18,61 @@
 
   </head>
   <body>
-    <div class="row">
+
+    <div class="row" id="header">
       <h1 class="col m8 offset m2">The Title Goes Here!</h1>
-
+      <!-- Modal Trigger -->
       <button class="add-event col m2" type="button" name="button">Add Event!</button>
-      <!-- <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a> -->
-
-      <!-- Modal Structure -->
-      <div id="modal1" class="modal">
-        <div class="modal-content">
-          <h4>Modal Header</h4>
-          <p>A bunch of text</p>
-        </div>
-        <div class="modal-footer">
-          <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
-        </div>
-      </div>
-
     </div>
       <hr>
     <div class="row" id="eventTarget">
+    </div>
+
+      <!-- Modal Structure -->
+      <div id="eventModal" class="modal">
+        <div class="modal-content">
+          <h4>Add New Event</h4>
+        </div>
+          <form class="submit-event" action="/api/events" method="post">
+            <div class="row">
+              <div class="form-group input-field col s12">
+                <input id="name" type="text" class="validate" >
+                <label for="name">Event Name</label>
+              </div>
+              <div class="form-group input-field col s6">
+                <input id="host" type="text" class="validate" >
+                <label for="host">Host</label>
+              </div>
+              <div class="form-group input-field col s6">
+                <input id="where" type="text" class="validate" >
+                <label for="where">Where</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group input-field col s6">
+                <input id="when" type="text" class="validate" >
+                <label for="when">When</label>
+              </div>
+              <div class="form-group input-field col s6">
+                <input id="what" type="text" class="validate" >
+                <label for="what">Description</label>
+              </div>
+            </div>
+            <button class="btn waves-effect waves-light modal-close" type="submit" name="action">Submit</button>
+          </form>
+      </div>
+
+      <div id="editModal" class="modal">
+        <div class="modal-content">
+          <h4>Edit Event</h4>
+            <div class="modal-body" id="editEventModalBody">
+                <p> REPLACE #editEventModalBody</p>
+            </div>
+        </div>
+      <button type="button" id="editEventModalSubmit" name="button">Submit Changes</button>
+    </div>
+
+
       <script id="event-template" type="text/x-handlebars-template">
         {{#each events}}
         <div class="col s6 m3">
@@ -46,14 +80,15 @@
             <div class="card-content white-text">
               <span class="card-title">{{name}}</span>
               <ul>
-                <li>Host:</li>
+                <li>Host: {{host}}</li>
                 <li>Where: {{where}}</li>
                 <li>When: {{when}}</li>
                 <li>Description: {{what}}</li>
               </ul>
             </div>
             <div class="card-action">
-              <button type="button" name="button">Edit Event</button>
+              <button class="edit-event" type="button" name="button" data-id={{_id}}>Edit Event</button>
+              <button class="delete-event" type="button" name="button" data-id={{_id}}>Delete</button>
               <!-- Dropdown Trigger -->
               <a class='dropdown-button btn' href='#' data-activates='dropdown1'>Drop Me!</a>
 
@@ -81,6 +116,33 @@
         </div>
       {{/each}}
       </script>
-    </div>
+
+      <script id ='event-edit-template' type='text/x-handlebars-template'>
+        <form class="edit-event" id="{{_id}}" action="/api/events" method="put">
+          <div class="row">
+            <div class="form-group input-field col s12">
+              <input id="name" type="text" class="validate" value = "{{ name }}">
+              <label for="name">Event Name</label>
+            </div>
+            <div class="form-group input-field col s6">
+              <input id="host" type="text" class="validate" value="{{ host }}" >
+              <label for="host">Host</label>
+            </div>
+            <div class="form-group input-field col s6">
+              <input id="where" type="text" class="validate" value="{{ where }}">
+              <label for="where">Where</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group input-field col s6">
+              <input id="when" type="text" class="validate" value = "{{ when }}">
+              <label for="when">When</label>
+            </div>
+            <div class="form-group input-field col s6">
+              <input id="what" type="text" class="validate" value = "{{ what }}" >
+              <label for="what">Description</label>
+            </div>
+          </div>
+      </script>
   </body>
 </html>

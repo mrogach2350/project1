@@ -37,18 +37,104 @@ $(document).ready(function() {
     );
   }
 
-  // function renderEvents(events) {
-  //   events.forEach(function(e) {
-  //     renderEvent(e);
-  //   });
-  // }
-  //
-  // function renderEvent(e) {
-  //   console.log('rendering event', e);
-  //   var eventHtml = $('#event-template').html();
-  //   var eventsTemplate = Handlebars.compile(eventHtml);
-  //   var html = eventsTemplate({events:e});
-  //   $('#eventTarget').prepend(html);
-  // }
+$('.add-event').on('click', function(event) {
+  event.preventDefault();
+  $('#eventModal').openModal();
+});
 
+$('#eventTarget').on('click', '.edit-event', function(event){
+  event.preventDefault();
+  $('#editModal').openModal();
+  handleEditEventClick();
+});
+
+
+function handleEditEventClick(e){
+  var eventId = $('.edit-event').attr('data-id');
+  console.log('edit event clicked for ', eventId);
+  $.ajax({
+    method: 'GET',
+    url: '/api/events/' + eventId,
+    success: editEventSuccess
+  });
+}
+// $('.edit-event').on('submit', function(e){
+//   e.preventDefault();
+//   var eventInfo = {
+//
+//     name: $('#name').val(),
+//     host: $('#host').val(),
+//     where: $('#where').val(),
+//     when: $('#when').val(),
+//     what: $('#what').val()
+//   }
+//   $.ajax({
+//     method: 'PUT',
+//     url: '/api/events' +
+//     data: eventInfo,
+//     success: editEventSuccess,
+//     error: editEventError
+//   });
+// });
+
+$('#eventTarget').on('click','.delete-event', function(event){
+  event.preventDefault();
+  $.ajax({
+    method: 'DELETE',
+    url: '/api/events/' + $(this).attr('data-id'),
+    success: deleteEventSuccess,
+    error: deleteEventError
+  });
+});
+
+$('.submit-event').on('submit', function(e){
+  e.preventDefault();
+  var eventInfo = {
+    name: $('#name').val(),
+    host: $('#host').val(),
+    where: $('#where').val(),
+    when: $('#when').val(),
+    what: $('#what').val()
+  }
+  $.ajax({
+    method: 'POST',
+    url: '/api/events',
+    data: eventInfo,
+    success: newEventSuccess,
+    error: newEventError
+  });
+});
+
+  function newEventSuccess(json){
+    $('.submit-event input').val('');
+    allEvents.push(json);
+    $('#eventTarget').empty();
+    renderEvent();
+  }
+  function newEventError(){
+
+  }
+  function editEventSuccess(json) {
+    console.log('found '+ json);
+  }
+  
+  function deleteEventSuccess(json){
+    var e = json;
+    var eId = e._id;
+    for (var i = 0; i < allEvents.length; i ++){
+      console.log(allEvents);
+      if(allEvents[i]._id === eId) {
+        console.log(allEvents[i]);
+        allEvents.splice(i, 1);
+        console.log(allEvents);
+        break;
+      }
+    }
+    $('#eventTarget').empty();
+    renderEvent();
+  }
+
+  function deleteEventError(json){
+
+  }
 })
