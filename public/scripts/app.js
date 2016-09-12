@@ -1,14 +1,43 @@
 console.log('app.js is loaded');
 
+function renderEvents(json){
+  allEvents = json;
+  renderEvent();
+}
+
+function renderEvent(){
+  var eventHtml = $('#event-template').html();
+  var eventsTemplate = Handlebars.compile(eventHtml);
+  var html = eventsTemplate({events:allEvents});
+  $('#eventTarget').prepend(html);
+  $('.dropdown-button').dropdown({
+     inDuration: 300,
+     outDuration: 225,
+     constrain_width: false, // Does not change width of dropdown to that of the activator
+     hover: true, // Activate on hover
+     gutter: 0, // Spacing from edge
+     belowOrigin: false, // Displays dropdown below the button
+     alignment: 'left' // Displays dropdown with edge aligned to the left of button
+   }
+  );
+}
+
 function submitEditEvent(e) {
   e.preventDefault();
   var editInfo = {
+    id: $('#editEventModalSubmit').attr('eventId'),
     name: $('#edit-name').val(),
     host: $('#edit-host').val(),
     where: $('#edit-where').val(),
     when: $('#edit-when').val(),
     what: $('#edit-what').val()
   };
+  $.ajax({
+    method: 'PUT',
+    url: '/api/events/' + editInfo.id,
+    data: editInfo,
+    success: editEventSuccess
+  });
 }
 
 function newEventSuccess(json){
@@ -22,8 +51,11 @@ function newEventError(){
 
 }
 
-function editEventSuccess(json) {
-  console.log('found '+ json);
+function editEventSuccess(editInfo) {
+  $('#editModal').closeModal();
+  console.log('found '+ (editInfo));
+  $('#eventTarget').empty();
+  renderEvent();
 }
 
 function deleteEventSuccess(json){
@@ -72,27 +104,7 @@ function populateEditEventModal(eventDetails, eventId){
   $('#editEventModalBody').html(eventForms);
 }
 
-function renderEvents(json){
-  allEvents = json;
-  renderEvent();
-}
 
-function renderEvent(){
-  var eventHtml = $('#event-template').html();
-  var eventsTemplate = Handlebars.compile(eventHtml);
-  var html = eventsTemplate({events:allEvents});
-  $('#eventTarget').prepend(html);
-  $('.dropdown-button').dropdown({
-     inDuration: 300,
-     outDuration: 225,
-     constrain_width: false, // Does not change width of dropdown to that of the activator
-     hover: true, // Activate on hover
-     gutter: 0, // Spacing from edge
-     belowOrigin: false, // Displays dropdown below the button
-     alignment: 'left' // Displays dropdown with edge aligned to the left of button
-   }
-  );
-}
 
 $(document).ready(function() {
 
