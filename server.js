@@ -70,6 +70,16 @@ app.post('/api/events', function (req, res){
   });
 });
 
+app.get('/api/events/:id', function(req, res){
+  db.Event.findById(req.params.id, function(err, foundEvent){
+    if(err) {
+      console.log('error', err);
+    }
+    console.log('responding with ', foundEvent);
+    res.json(foundEvent);
+  });
+});
+
 app.delete('/api/events/:id', function(req, res){
   var eventId = req.params.id;
 
