@@ -52,10 +52,18 @@ function newEventError(){
 }
 
 function editEventSuccess(editInfo) {
-  $('#editModal').closeModal();
-  console.log('found '+ (editInfo));
+  console.log(editInfo);
+  var eId = editInfo._id;
+  for (var i = 0; i < allEvents.length; i ++){
+    console.log(allEvents);
+    if(allEvents[i]._id === eId) {
+      allEvents[i] = editInfo;
+      break;
+    }
+  }
   $('#eventTarget').empty();
   renderEvent();
+  $('#editModal').closeModal();
 }
 
 function deleteEventSuccess(json){
@@ -79,8 +87,7 @@ function deleteEventError(json){
 }
 
 // identifies which event card was clicked and saves that _id to insert the open fields into the modal.
-function handleEditEventClick(e){
-  var eventId = $('.edit-event').attr('data-id');
+function handleEditEventClick(eventId){
   console.log('edit event clicked for ', eventId);
   $.get('/api/events/' + eventId, function(eventDetails){
     console.log('got back event details ', eventDetails);
@@ -122,7 +129,8 @@ $('.add-event').on('click', function(event) {
 $('#eventTarget').on('click', '.edit-event', function(event){
   event.preventDefault();
   $('#editModal').openModal();
-  handleEditEventClick();
+  var eventId = $(this).attr('data-id');
+  handleEditEventClick(eventId);
 });
 
 $('#eventTarget').on('click','.delete-event', function(event){
