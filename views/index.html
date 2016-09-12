@@ -117,32 +117,32 @@
       </script>
 
       <script id ='event-edit-template' type='text/x-handlebars-template'>
-        <form class="edit-event-form" eventId="{{_id}}" action="/api/events" method="put" onsubmit="submitEditEvent(event)">
+        <form class="edit-event-form" action="/api/events" method="put" onsubmit="submitEditEvent(event)">
           <div class="row">
             <div class="form-group input-field col s12">
               <input id="edit-name" type="text" class="validate" value = "{{name}}">
-              <label for="name">Event Name</label>
+              <label class="active" for="name">Event Name</label>
             </div>
             <div class="form-group input-field col s6">
               <input id="edit-host" type="text" class="validate" value="{{host}}">
-              <label for="host">Host</label>
+              <label class="active" for="host">Host</label>
             </div>
             <div class="form-group input-field col s6">
               <input id="edit-where" type="text" class="validate" value="{{where}}">
-              <label for="where">Where</label>
+              <label class="active" for="where">Where</label>
             </div>
           </div>
           <div class="row">
             <div class="form-group input-field col s6">
               <input id="edit-when" type="text" class="validate" value = "{{when}}">
-              <label for="when">When</label>
+              <label class="active" for="when">When</label>
             </div>
             <div class="form-group input-field col s6">
               <input id="edit-what" type="text" class="validate" value = "{{what}}">
-              <label for="what">Description</label>
+              <label class="active" for="what">Description</label>
             </div>
           </div>
-          <button type="submit" id="editEventModalSubmit" name="action">Submit Changes</button>
+          <button type="submit" id="editEventModalSubmit" name="action" eventId="{{_id}}">Submit Changes</button>
         </form>
       </script>
   </body>
