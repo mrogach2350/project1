@@ -43,6 +43,7 @@ var db = require('./models');
   */
 
 app.get('/api/events', function api_event(req, res){
+
   db.Event.find({})
     .exec(function(err, events){
       if (err){
@@ -100,11 +101,8 @@ app.put('/api/events/:id', function(req, res){
     foundEvent.when = req.body.when;
     foundEvent.what = req.body.what;
 
-    foundEvent.save(function (err, updatedEvent){
-      if(err){console.log('error ' + err);}
-      console.log(updatedEvent);
-      res.json(updatedEvent);
-    });
+    foundEvent.save();
+    res.json(foundEvent);
   });
 });
 
