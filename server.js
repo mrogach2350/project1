@@ -88,6 +88,26 @@ app.delete('/api/events/:id', function(req, res){
   });
 });
 
+app.put('/api/events/:id', function(req, res){
+  var eventId = req.params.id;
+
+  db.Event.findById(eventId, function (err, foundEvent){
+    if (err) {console.log(err)};
+
+    foundEvent.name = req.body.name;
+    foundEvent.host = req.body.host;
+    foundEvent.where = req.body.where;
+    foundEvent.when = req.body.when;
+    foundEvent.what = req.body.what;
+
+    foundEvent.save(function (err, updatedEvent){
+      if(err){console.log('error ' + err);}
+      console.log(updatedEvent);
+      res.json(updatedEvent);
+    });
+  });
+});
+
 /**********
  * SERVER *
  **********/
