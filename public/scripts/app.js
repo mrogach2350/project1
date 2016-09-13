@@ -45,6 +45,7 @@ function newEventSuccess(json){
   allEvents.push(json);
   $('#eventTarget').empty();
   renderEvent();
+  $('#eventModal').closeModal();
 }
 
 function newEventError(){
