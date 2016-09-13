@@ -32,12 +32,29 @@ This is an event posting board designed for use by a class/team. Users can uploa
 ```
 
 ```javascript
-function newEventSuccess(json){
-  $('.submit-event input').val('');
-  allEvents.push(json);
-  $('#eventTarget').empty();
-  renderEvent();
-  $('#eventModal').closeModal();
+// identifies which event card was clicked and saves that _id to insert the open fields into the modal.
+function handleEditEventClick(eventId){
+  console.log('edit event clicked for ', eventId);
+  $.get('/api/events/' + eventId, function(eventDetails){
+    console.log('got back event details ', eventDetails);
+    populateEditEventModal(eventDetails, eventId);
+    $('#editModal').openModal();
+  });
+}
+
+//inserts event details into the form template used inside the edit-event modal.
+function populateEditEventModal(eventDetails, eventId){
+  var eventsTemplate = $('#event-edit-template').html();
+  var template = Handlebars.compile(eventsTemplate);
+  eventForms = template({
+    name: eventDetails.name,
+    host: eventDetails.host,
+    where: eventDetails.where,
+    when: eventDetails.when,
+    what: eventDetails.what,
+    _id: eventId
+  });
+  $('#editEventModalBody').html(eventForms);
 }
 
 function editEventSuccess(editInfo) {
