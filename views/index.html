@@ -7,6 +7,7 @@
     <!-- STYLESHEETS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
     <link rel="stylesheet" href="/styles/styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet">
 
     <!-- Vendor Scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
@@ -18,15 +19,15 @@
 
   </head>
   <body>
+      <div class="row" id="header">
+        <h1 class="col m8 offset m2">Let's Get Together !</h1>
+        <!-- Modal Trigger -->
+          <button class="add-event col m2" type="button" name="button">Add Event!</button>
+      </div>
+      <!-- <hr> -->
+      <div class="row" id="eventTarget">
+      </div>
 
-    <div class="row" id="header">
-      <h1 class="col m8 offset m2">The Title Goes Here!</h1>
-      <!-- Modal Trigger -->
-      <button class="add-event col m2" type="button" name="button">Add Event!</button>
-    </div>
-      <hr>
-    <div class="row" id="eventTarget">
-    </div>
 
       <!-- Modal Structure -->
       <div id="eventModal" class="modal">
@@ -115,7 +116,7 @@
         </div>
       {{/each}}
       </script>
-
+<hr>
       <script id ='event-edit-template' type='text/x-handlebars-template'>
         <form class="edit-event-form" action="/api/events" method="put" onsubmit="submitEditEvent(event)">
           <div class="row">
