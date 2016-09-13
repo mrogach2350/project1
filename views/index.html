@@ -24,7 +24,6 @@
         <!-- Modal Trigger -->
           <button class="add-event col m2" type="button" name="button">Add Event!</button>
       </div>
-      <!-- <hr> -->
       <div class="row" id="eventTarget">
       </div>
 
@@ -62,7 +61,7 @@
             <button class="btn waves-effect waves-light modal-close" type="submit" name="action">Submit</button>
           </form>
       </div>
-
+<hr>
       <div id="editModal" class="modal">
         <div class="modal-content">
           <h4>Edit Event</h4>
@@ -116,7 +115,7 @@
         </div>
       {{/each}}
       </script>
-<hr>
+
       <script id ='event-edit-template' type='text/x-handlebars-template'>
         <form class="edit-event-form" action="/api/events" method="put" onsubmit="submitEditEvent(event)">
           <div class="row">
