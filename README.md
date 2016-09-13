@@ -2,6 +2,23 @@
 
 ##[Trello Link!](https://trello.com/b/xqoziE71/lets-get-together), [Heroku Link!](https://enigmatic-shelf-29928.herokuapp.com/)
 
+## Project Summary!
+This is an event posting board designed for use by a class/team. Users can upload, view, edit, and delete events.
+
+### Techs Used-
+1. Materialize CSS
+2. Mongoose
+3. MongoDB
+4. Express
+5. Heroku Hosting
+
+###Future Dev-
+1. Adding an Attendees function.
+2. Limiting users by having a pre-set list of legitimate users, eventually creating login functionality.
+3. Date/Calender Integration
+4. Notification System
+5. Multiple Class/Team boards.
+
 ##Interesting Code Samples:
 
 ```html
@@ -45,4 +62,3 @@ function editEventSuccess(editInfo) {
 ![wireframe1](http://i.imgur.com/Lmr1xpj.jpg "Optional title")
 ![wireframe2](http://i.imgur.com/HsGy20O.jpg "Optional title")
 ![wireframe3](http://i.imgur.com/8bLNYtA.jpg "Optional title")
->>>>>>> 47c9c86eb1d7455b7074db9930c56b4a4028ee45
