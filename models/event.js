@@ -2,15 +2,20 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var EventSchema = new Schema({
-  name: {String,
+  name: {
+    type: String,
   required: true},
-  host: {String,
+  host: {
+    type: String,
   required: true},
-  where: {String,
+  where: {
+    type: String,
   required: true},
-  when: {String,
+  when: {
+    type: String,
   required: true},
-  what: {String,
+  what: {
+    type: String,
   required: true}
 });
 
