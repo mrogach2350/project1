@@ -1,5 +1,11 @@
 button {
   margin: 0 5px;
+  border-radius: 4px;
+  background: #D5530D;
+}
+body{
+  background-size: cover;
+  background-image: url(../images/background1.jpg);
 }
 .add-event {
   margin-top: 50px;
