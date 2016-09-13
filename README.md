@@ -1,7 +1,6 @@
 # project1
 
-##[Trello Link!](https://trello.com/b/xqoziE71/lets-get-together)
-###[Heroku Link!](https://enigmatic-shelf-29928.herokuapp.com/)
+##[Trello Link!](https://trello.com/b/xqoziE71/lets-get-together), [Heroku Link!](https://enigmatic-shelf-29928.herokuapp.com/)
 
 ##Interesting Code Samples:
 
